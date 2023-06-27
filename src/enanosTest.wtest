@@ -1,0 +1,63 @@
+import seres.*
+import territorios.*
+
+
+describe "enanos"{
+	
+	//seres
+	
+	const herrero = new EnanoHerrero()
+	const enano1 = new Enano()
+	const furioso = new EnanoFurioso()
+	const minero = new EnanoMinero()
+	//territorio
+	const comarca = new Territorio()
+	//escondite
+	const nido1 = new Escondite()
+	
+	method initialize(){
+		
+		comarca.agregarSer(enano1)
+		comarca.agregarSer(herrero)
+		comarca.agregarSer(furioso)
+		comarca.agregarSer(minero)
+		
+	}
+	
+	test "enano equilibrado tiene ira 200 y pasa a 500"{
+		enano1.equilibrarse()
+		assert.equals(500, enano1.ira())
+	}
+	test "enano furioso tiene tope de habilidad 2000 y 
+		si cambia cambia la habilidad "{
+			
+		assert.equals(400, furioso.habilidad())
+		furioso.topeDeHabilidad(300)
+		assert.equals(300, furioso.habilidad())
+	}
+	test" enano minero adquiere experiencia"{
+		minero.adquirirExperiencia()
+		assert.equals(1, minero.escondites().size())
+		assert.equals(500, minero.ira())
+	}
+	test "minero sufre sueño profundo y no tiene nido la ira baja 50"{
+	
+		minero.suenioProfundo()
+		assert.equals(150, minero.ira())
+	}
+	test "minero sufre sueño profundo y tiene 6 candados"{
+		minero.adquirirExperiencia()
+		minero.adquirirExperiencia()
+		minero.adquirirExperiencia()
+		minero.suenioProfundo()
+		assert.equals(1100, minero.ira())
+		assert.equals(6, minero.cantidadDeCandados())
+	}
+	test "ira de enano minero"{
+		assert.equals(200, minero.ira())
+	}
+	test "valor total de escondites"{
+		minero.valorTotalEscondites()
+		assert.equals(200, minero.ira())
+	}
+}	

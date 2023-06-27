@@ -1,0 +1,70 @@
+import seres.*
+import territorios.*
+
+
+describe "comarca parte2"{
+	
+	//seres
+	const silvano = new ElfoSilvano()
+	const herrero = new EnanoHerrero()
+	const frodo = new Hobbit()
+	
+	//territorio
+	const comarca = new Territorio()
+	
+	method initialize(){
+		frodo.organizarFiesta()
+		comarca.agregarSer(silvano)
+		comarca.agregarSer(herrero)
+		comarca.agregarSer(frodo)
+	}
+	
+	test "capitan de la comarca( habilidad=1100)"{
+		assert.equals(frodo, comarca.esElCapitan())
+	}
+	test " efecto de una somnolencia en elfo"{
+		assert.equals(20, silvano.cancionesQueSabe())
+		comarca.efectoSomnolencia()
+		assert.equals(10, silvano.cancionesQueSabe())
+	}
+	test " efecto de una somnolencia en frodo"{
+		assert.equals(45, frodo.amigos())
+		comarca.efectoSomnolencia()
+		assert.equals(42, frodo.amigos())
+	}
+	test "efecto de somnolencia en herrero: disminuye su ira"{
+		assert.equals(200, herrero.ira())
+		comarca.efectoSomnolencia()
+		assert.equals(150, herrero.ira())
+	}
+	test " herrero no esta conforme y los demás si"{
+		assert.that(silvano.estaConformeCon(comarca))
+		assert.that(frodo.estaConformeCon(comarca))
+		assert.notThat(herrero.estaConformeCon(comarca))
+	}	
+	test " la comarca no esta en paz"{
+		assert.notThat(comarca.estaEnPaz())
+	}	
+	test" la comarca esta en paz si  no está el herrero "{
+		comarca.eliminarSer(herrero)
+		assert.that(comarca.estaEnPaz())
+	}
+	test "efecto en elfo del consumo de recursos de la comarca"{
+		comarca.consumoDeRecursos()
+		assert.equals(35, silvano.cancionesQueSabe())
+		assert.equals(7, comarca.lembas())
+	}
+	test "efecto en frodo del consumo de recursos de la comarca"{
+		comarca.consumoDeRecursos()
+		assert.equals(52, frodo.amigos())
+		assert.equals(18, frodo.historiasEscuchadas())
+		assert.equals(6, comarca.tabaco())
+	}
+	
+	
+	
+	
+	
+	
+	
+}

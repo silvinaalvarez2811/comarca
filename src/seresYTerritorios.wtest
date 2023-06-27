@@ -1,0 +1,128 @@
+import seres.*
+import territorios.*
+
+
+describe "seres y territorios"{
+	
+	//seres
+	const silvano = new ElfoSilvano()
+	const herrero = new EnanoHerrero()
+	const frodo = new Hobbit()
+	
+	//territorio
+	const comarca = new Territorio()
+	
+	method initialize(){
+		frodo.organizarFiesta()
+		comarca.agregarSer(silvano)
+		comarca.agregarSer(herrero)
+		comarca.agregarSer(frodo)
+	}
+	
+	test "habilidad del elfo silvano es de 580"{
+		assert.equals(580, silvano.habilidad())
+	}
+	 test "habilidad de frodo es de 1100"{
+		assert.equals(1100, frodo.habilidad())
+	}
+	 test "habilidad del enano herrero es de 300"{
+		assert.equals(300, herrero.habilidad())
+	}
+	test" frodo tiene 45 amigos "{
+		assert.equals(45, frodo.amigos())
+	}	
+	test" frodo es inmortal "{
+		assert.that( frodo.esInmortal())
+	}
+	test"promedio de habilidad de la comarca"{
+		assert.equals(660, comarca.promedioDehabilidad())
+	}
+	test"valor máximo de habilidad de la comarca "{
+		assert.equals(1100,comarca.habilidadMaxDeInmortales())
+	
+	}
+	test" el silvano y el herrero son torpes"{
+		assert.equals([silvano, herrero] , comarca.seresTorpes())
+	}
+	test" hay un ser que es mortal en la comarca"{
+		assert.that(comarca.hayMortal())
+	}	
+
+}
+
+describe "hay un torneo en la comarca"{
+	
+	//seres
+	const silvano = new ElfoSilvano()
+	const herrero = new EnanoHerrero()
+	const frodo = new Hobbit()
+	
+	//territorio
+	const comarca = new Territorio()
+	
+	method initialize(){
+		frodo.organizarFiesta()
+		comarca.agregarSer(silvano)
+		comarca.agregarSer(herrero)
+		comarca.agregarSer(frodo)
+		comarca.torneo()
+	}
+	test"silvano sabe 40 canciones"{
+		assert.equals(40, silvano.cancionesQueSabe())
+	}
+	test"frodo tiene 53 amigos"{
+		assert.equals(53, frodo.amigos())
+	}
+	test "la ira del herrero es de 500"	{
+		assert.equals(500, herrero.ira())
+	}
+	test "habilidad del elfo silvano es de 580"{
+		assert.equals(580, silvano.habilidad())
+	}
+	 test "habilidad de frodo es de 1100"{
+		assert.equals(1100, frodo.habilidad())
+	}
+	 test "habilidad del enano herrero es de 400"{
+		assert.equals(400, herrero.habilidad())
+	}	
+	test" el silvano y el herrero son torpes"{
+		assert.equals([silvano, herrero] , comarca.seresTorpes())
+	}	
+		
+}
+describe "hay una epifania en la comarca"{
+	
+	//seres
+	const silvano = new ElfoSilvano()
+	const herrero = new EnanoHerrero()
+	const frodo = new Hobbit()
+	
+	//territorio
+	const comarca = new Territorio()
+	
+	method initialize(){
+		frodo.organizarFiesta()
+		comarca.agregarSer(silvano)
+		comarca.agregarSer(herrero)
+		comarca.agregarSer(frodo)
+		comarca.torneo()
+		comarca.epifania()
+	}
+	test"silvano sabe 80 canciones"{
+		assert.equals(80, silvano.cancionesQueSabe())
+	}
+	test"silvano tiene 640 de habilidad"{
+		assert.equals(640, silvano.habilidad())
+	}
+	test"frodo tiene 53 amigos"{
+		assert.equals(53, frodo.amigos())
+	}
+	test "la ira del herrero es de 800"	{
+		assert.equals(800, herrero.ira())
+	}
+	
+}
+
+
+
+
